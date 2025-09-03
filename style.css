@@ -37,6 +37,11 @@ body {
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    transition: .3s;
+}
+
+.header.sticky {
+    background: var(--bg-color);
 }
 
 .logo {
@@ -58,6 +63,10 @@ body {
     animation: showright 1s ease forwards;
     animation-delay: .4s;
 } */
+
+.navbar{
+    position: relative;
+}
 
 .navbar a {
     font-size: 1.8rem;
@@ -101,8 +110,8 @@ section {
     line-height: 1.2;
 }
 
-.home-content h1 span{
-    color:var(--text-color) ;
+.home-content h1 span {
+    color: var(--text-color);
 }
 
 .home-content .text-animate {
@@ -127,6 +136,25 @@ section {
     font-weight: 700;
     color: transparent;
     -webkit-text-stroke: .7px var(--main-color);
+    background-image: linear-gradient(var(--main-color), var(--main-color));
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-position: -33rem 0;
+    animation: homeBgText 6s linear infinite;
+    animation-delay: 2s;
+}
+
+.home-content .text-animate h3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    border-right: 2px solid var(--main-color);
+    z-index: -1;
+    animation: homeCursorText 6s linear infinite;
+    animation-delay: 2s;
 }
 
 /* .home-content h3::before {
@@ -341,25 +369,6 @@ section {
     opacity: .5;
 }
 
-/* .home-imgHover::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 120%;
-    height: 100%;
-    background: #081b29;
-    animation: showright 1s ease forwards;
-    animation-delay: 3s;
-    z-index: 100;
-} */
-/* 
-@keyframes showright {
-    100% {
-        width: 0;
-    }
-} */
-
 @keyframes manipActiveHover {
     100% {
         pointer-events: auto;
@@ -414,7 +423,15 @@ span {
     border-bottom: .2rem solid var(--second-bg-color);
     border-left: .2rem solid var(--main-color);
     border-right: .2rem solid var(--main-color);
+    animation: spin 6s linear infinite;
 }
+
+@keyframes spin {
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
 
 .about-content {
     text-align: center;
@@ -665,7 +682,7 @@ span {
     color: var(--text-color);
 }
 
-.contact form .focus{
+.contact form .focus {
     position: absolute;
     top: 0;
     left: 0;
@@ -680,8 +697,8 @@ span {
 .contact form .input-box .input-field input:focus~.focus,
 .contact form .input-box .input-field input:valid~.focus,
 .contact form .textarea-field textarea:focus~.focus,
-.contact form .textarea-field textarea:valid~.focus{
-width: 100%;
+.contact form .textarea-field textarea:valid~.focus {
+    width: 100%;
 }
 
 .contact form .textarea-field {
@@ -698,7 +715,7 @@ width: 100%;
     cursor: pointer;
 }
 
-.footer{
+.footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -707,11 +724,11 @@ width: 100%;
     background: var(--second-bg-color);
 }
 
-.footer-text p{
+.footer-text p {
     font-size: 1.6rem;
 }
 
-.footer-iconTop a{
+.footer-iconTop a {
     position: relative;
     display: inline-flex;
     justify-content: center;
@@ -724,7 +741,7 @@ width: 100%;
     overflow: hidden;
 }
 
-.footer-iconTop a::before{
+.footer-iconTop a::before {
     content: '';
     position: absolute;
     top: 0;
@@ -736,15 +753,202 @@ width: 100%;
     transition: .5s;
 }
 
-.footer-iconTop a:hover::before{
-width: 100%;
+.footer-iconTop a:hover::before {
+    width: 100%;
 }
-.footer-iconTop a i{
+
+.footer-iconTop a i {
     font-size: 2.4rem;
     color: var(--bg-color);
     transition: .5s;
 }
 
-.footer-iconTop a:hover i{
+.footer-iconTop a:hover i {
     color: var(--main-color);
 }
+
+/* animation reload and scrolling */
+
+/* .animate{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: yellowgreen;
+    z-index: 98;
+}
+
+.logo.animate,
+.navbar .animate{
+    animation: showRight 1s ease forwards;
+    animation-delay: calc(.3s * var(--i));
+} */
+/* BREAKPOINTS */
+/* @media (max-width: 1200px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+@media (max-width: 991px) {
+    .header {
+        padding: 2rem 4%;
+    }
+
+    section {
+        padding: 10rem 4% 2rem;
+    }
+
+    .home {
+        padding: 0 4%;
+    }
+
+    .footer {
+        padding: 2rem 4%;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        background: var(--bg-color);
+    }
+
+    #menu-icon {
+        display: block;
+    }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: -100%;
+        width: 100%;
+        padding: 1rem 4%;
+        background: var(--main-color);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+        z-index: 1;
+        transition: .25s ease;
+        transition-delay: .25s;
+    }
+
+    .navbar.active {
+        left: 0;
+        transition-delay: 0s;
+    }
+
+    .navbar .active-nav {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-color);
+        border-top: 1rem solid rgba(0, 0, 0, .2);
+        z-index: -1;
+        transition: .25s ease;
+        transition-delay: 0s;
+    }
+
+    .navbar.active.active-nav {
+        left: 0;
+        transition-delay: .25s;
+    }
+
+    .navbar a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+    }
+} */
+
+/* ===== Navbar (Default for Desktop) ===== */
+.navbar {
+    display: flex;
+    gap: 2rem;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ===== Responsive Navbar for Mobile ===== */
+@media (max-width: 768px) {
+    #menu-icon {
+        display: block;
+        /* Show hamburger */
+        z-index: 1001;
+    }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: -100%;
+        /* Hidden by default */
+        width: 100%;
+        padding: 1rem 4%;
+        background: var(--bg-color);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+        flex-direction: column;
+        gap: 2rem;
+        opacity: 1;
+        /* Keep visible */
+        transform: none;
+        pointer-events: auto;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .navbar.active {
+        left: 0;
+        /* Slide in when active */
+    }
+
+    .navbar a {
+        display: block;
+        font-size: 2rem;
+        margin: 2rem 0;
+        text-align: center;
+    }
+}
+
+/* keyframes animation */
+
+@keyframes homeBgText {
+
+    0%,
+    10%,
+    100% {
+        background-position: -33rem 0;
+    }
+
+    65%,
+    85% {
+        background-position: 0 0;
+    }
+}
+
+@keyframes homeCursorText {
+
+    0%,
+    10%,
+    100% {
+        width: 0;
+    }
+
+    65%,
+    78%,
+    85% {
+        width: 93%;
+        opacity: 1;
+    }
+
+    75%,
+    81% {
+        opacity: 0;
+    }
+}
+
+/* @keyframes showRight{
+    100%{
+        width: 0;
+    }
+} */
