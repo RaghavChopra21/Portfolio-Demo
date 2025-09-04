@@ -64,7 +64,7 @@ body {
     animation-delay: .4s;
 } */
 
-.navbar{
+.navbar {
     position: relative;
 }
 
@@ -82,6 +82,7 @@ body {
 }
 
 #menu-icon {
+    position: relative;
     font-size: 3.6rem;
     color: var(--text-color);
     cursor: pointer;
@@ -105,6 +106,7 @@ section {
 
 .home-content h1 {
     position: relative;
+    display: inline-block;
     font-size: 56px;
     font-weight: 700;
     line-height: 1.2;
@@ -140,6 +142,9 @@ section {
     background-repeat: no-repeat;
     -webkit-background-clip: text;
     background-position: -33rem 0;
+}
+
+.home.show-animate .home-content .text-animate h3 {
     animation: homeBgText 6s linear infinite;
     animation-delay: 2s;
 }
@@ -153,6 +158,9 @@ section {
     height: 100%;
     border-right: 2px solid var(--main-color);
     z-index: -1;
+}
+
+.home.show-animate .home-content .text-animate h3::before {
     animation: homeCursorText 6s linear infinite;
     animation-delay: 2s;
 }
@@ -386,6 +394,7 @@ section {
 }
 
 .heading {
+    position: relative;
     font-size: 5rem;
     margin-bottom: 3rem;
     text-align: center;
@@ -438,10 +447,13 @@ span {
 }
 
 .about-content h3 {
+    position: relative;
+    display: inline-block;
     font-size: 2.6rem;
 }
 
 .about-content p {
+    position: relative;
     font-size: 1.6rem;
     margin: 2rem 0 3rem;
 }
@@ -466,11 +478,14 @@ span {
 }
 
 .education-column .title {
+    position: relative;
+    display: inline-block;
     font-size: 2.5rem;
     margin: 0 0 1.5rem 2rem;
 }
 
 .education-column .education-box {
+    position: relative;
     border-left: .2rem solid var(--main-color);
 }
 
@@ -540,6 +555,12 @@ span {
     background: var(--second-bg-color);
 }
 
+.skills h2 {
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .skills .skills-row {
     display: flex;
     flex-wrap: wrap;
@@ -551,8 +572,14 @@ span {
 }
 
 .skills-column .title {
+    position: relative;
+    display: inline-block;
     font-size: 2.5rem;
     margin: 0 0 1.5rem;
+}
+
+.skills-column .skills-box {
+    position: relative;
 }
 
 .skills-box .skills-content {
@@ -644,6 +671,12 @@ span {
 .contact {
     min-height: auto;
     padding-bottom: 7rem;
+}
+
+.contact h2 {
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .contact form {
@@ -767,99 +800,55 @@ span {
     color: var(--main-color);
 }
 
-/* animation reload and scrolling */
+/* animation reload and scrolling  */
 
-/* .animate{
+.animate {
     position: absolute;
     top: 0;
     right: 0;
     width: 100%;
     height: 100%;
-    background: yellowgreen;
+    background: var(--bg-color);
     z-index: 98;
 }
 
-.logo.animate,
-.navbar .animate{
+.animate.img-section {
+    width: 50%;
+
+}
+
+.logo .animate,
+.navbar .animate,
+#menu-icon .animate,
+.home.show-animate .animate {
     animation: showRight 1s ease forwards;
     animation-delay: calc(.3s * var(--i));
-} */
-/* BREAKPOINTS */
-/* @media (max-width: 1200px) {
-    html {
-        font-size: 55%;
-    }
 }
 
-@media (max-width: 991px) {
-    .header {
-        padding: 2rem 4%;
-    }
-
-    section {
-        padding: 10rem 4% 2rem;
-    }
-
-    .home {
-        padding: 0 4%;
-    }
-
-    .footer {
-        padding: 2rem 4%;
-    }
+.animate {
+    transition: 1s ease;
+    transition-delay: calc(.3s / var(--i));
+    animation: none;
 }
 
-@media (max-width: 768px) {
-    .header {
-        background: var(--bg-color);
-    }
+section:nth-child(odd) .animate,
+.footer .animate{
+    background: var(--second-bg-color);
+}
 
-    #menu-icon {
-        display: block;
-    }
+.education .education-box .animate {
+    width: 105%;
+}
 
-    .navbar {
-        position: absolute;
-        top: 100%;
-        left: -100%;
-        width: 100%;
-        padding: 1rem 4%;
-        background: var(--main-color);
-        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
-        z-index: 1;
-        transition: .25s ease;
-        transition-delay: .25s;
-    }
+.about.show-animate .animate,
+.education.show-animate .animate,
+.skills.show-animate .animate,
+.contact.show-animate .animate,
+.footer.show-animate .animate {
+    transition-delay: calc(.3s * var(--i));
+    width: 0;
+}
 
-    .navbar.active {
-        left: 0;
-        transition-delay: 0s;
-    }
-
-    .navbar .active-nav {
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: var(--bg-color);
-        border-top: 1rem solid rgba(0, 0, 0, .2);
-        z-index: -1;
-        transition: .25s ease;
-        transition-delay: 0s;
-    }
-
-    .navbar.active.active-nav {
-        left: 0;
-        transition-delay: .25s;
-    }
-
-    .navbar a {
-        display: block;
-        font-size: 2rem;
-        margin: 3rem 0;
-    }
-} */
 
 /* ===== Navbar (Default for Desktop) ===== */
 .navbar {
@@ -947,8 +936,8 @@ span {
     }
 }
 
-/* @keyframes showRight{
-    100%{
+@keyframes showRight {
+    100% {
         width: 0;
     }
-} */
+}
